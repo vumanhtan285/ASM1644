@@ -126,7 +126,7 @@ app.get('/',(req,res)=>{
     if(req.session.userName){
         userNamee = req.session.userName;
     }
-    res.render('index',{loginUser:userNamee})
+    res.render('view',{loginUser:userNamee})
 })
 
 var PORT = process.env.PORT || 5000;
