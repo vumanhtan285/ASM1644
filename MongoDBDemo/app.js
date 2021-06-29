@@ -9,7 +9,7 @@ app.use(session({
     saveUninitialized: true,
     secret: 'asdadsaswetgergs',
     cookie: {maxAge : 60000}
-}));
+}))
 
 app.set('view engine','hbs')
 
@@ -110,7 +110,7 @@ app.post('/login', async (req,res)=>{
     const found = await dbhandle.checkUser(userinput,passinput);
     if(found){
         res.render('index',{loginUser:userinput})
-        req.session.userName = nameinput; 
+        req.session.userName = nameinput;
     }
     else{
         res.render('index',{errorLogin:"Login failed!"})
@@ -126,7 +126,7 @@ app.get('/',(req,res)=>{
     if(req.session.userName){
         userNamee = req.session.userName;
     }
-    res.render('view',{loginUser:userNamee})
+    res.render('index',{loginUser:userNamee})
 })
 
 var PORT = process.env.PORT || 5000;
