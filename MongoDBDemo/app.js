@@ -9,7 +9,7 @@ app.use(session({
     saveUninitialized: true,
     secret: 'asdadsaswetgergs',
     cookie: {maxAge : 60000}
-}))
+}));
 
 app.set('view engine','hbs')
 
