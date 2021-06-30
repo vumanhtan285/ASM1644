@@ -43,7 +43,23 @@ app.post('/update', async (req,res)=>{
     res.redirect('/view');
 })
 
+Kitu = ['a','e'];
 notDelete = ['IP','SS'];
+
+app.post('/doInsert', async (req,res)=>{
+    var nameInput = req.body.txtName;
+    var priceInput = req.body.txtPrice; 
+    var newProduct = {name:nameInput, price:priceInput, size:{length:20, weight:10}}
+    const kitu = Kitu.findIndex((e)=>e==newProduct.name);
+    if(kitu == 0)
+    {
+        await dbhandle.insertProduct(newProduct,"Product");
+    }
+    else{
+        res.end('Cannot add product')
+    }
+    res.render('index');
+})
 
 app.get('/delete', async (req,res)=>{
     const id = req.query.id;
@@ -82,14 +98,6 @@ app.get('/view', async (req,res)=>{
         userNamee = req.session.userName;
     }
     res.render('allProduct',{model:results,userName:userNamee})
-})
-
-app.post('/doInsert', async (req,res)=>{
-    var nameInput = req.body.txtName;
-    var priceInput = req.body.txtPrice; 
-    var newProduct = {name:nameInput, price:priceInput, size:{length:20, weight:10}}
-    await dbhandle.insertProduct(newProduct,"Product");
-    res.render('index')
 })
 
 app.get('/register', (req,res)=>{
