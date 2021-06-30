@@ -122,7 +122,7 @@ app.get('/insert',(req,res)=>{
 })
 
 app.get('/',(req,res)=>{
-    var userNamee = 'Login first, pleas !';
+    var userNamee = 'Login first, please !';
     if(req.session.userName){
         userNamee = req.session.userName;
     }
